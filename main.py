@@ -76,7 +76,7 @@ def find_password():
 #GUI setup
 
 window = Tk()
-window.title("Password Manager")
+window.title("Password Generator")
 window.config(padx=50, pady=50)
 
 canvas = Canvas(height=200, width=200)
@@ -98,7 +98,7 @@ website_entry.grid(row=1, column=1)
 website_entry.focus()
 email_entry = Entry(width=35)
 email_entry.grid(row=2, column=1, columnspan=2)
-email_entry.insert(0, "f.milenkovic10@gmail.com")
+email_entry.insert(0, "your.email@address.com")
 password_entry = Entry(width=21)
 password_entry.grid(row=3, column=1)
 
