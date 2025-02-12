@@ -4,26 +4,24 @@ from random import choice, randint, shuffle
 import pyperclip
 import json
 
-# ---------------------------- PASSWORD GENERATOR ------------------------------- #
-
-
+#function that generates new random password. Password will have between 8 and 10 letter and between 2 and 4 symbols and numbers respectively
 def generate_password():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
-    password_letters = [choice(letters) for _ in range(randint(8, 10))] #random bira izmedju 8 i 10 random brojeva i pravi listu
+    password_letters = [choice(letters) for _ in range(randint(8, 10))] 
     password_symbols = [choice(symbols) for _ in range(randint(2, 4))]
     password_numbers = [choice(numbers) for _ in range(randint(2, 4))]
 
     password_list = password_letters + password_symbols + password_numbers
     shuffle(password_list)
 
-    password = "".join(password_list) #.join is .append literally, pretvara listu u string
+    password = "".join(password_list) 
     password_entry.insert(0, password)
     pyperclip.copy(password)
 
-# ---------------------------- SAVE PASSWORD ------------------------------- #
+#function that saves generated password
 def save():
 
     website = website_entry.get()
@@ -58,7 +56,7 @@ def save():
             password_entry.delete(0, END)
 
 
-# ---------------------------- FIND PASSWORD ------------------------------- #
+#function that will go through database and show your passwords
 def find_password():
     website = website_entry.get()
     try:
@@ -67,7 +65,7 @@ def find_password():
     except FileNotFoundError:
         messagebox.showinfo(title="Error", message="No Data File Found.")
     else:
-        if website in data: #pulling out data from dict and printing it through msgbox
+        if website in data: 
             email = data[website]["email"]
             password = data[website]["password"]
             messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {password}")
@@ -75,7 +73,7 @@ def find_password():
             messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
 
 
-# ---------------------------- UI SETUP ------------------------------- #
+#GUI setup
 
 window = Tk()
 window.title("Password Manager")
@@ -104,8 +102,7 @@ email_entry.insert(0, "f.milenkovic10@gmail.com")
 password_entry = Entry(width=21)
 password_entry.grid(row=3, column=1)
 
-
-# Buttons
+#Buttons
 search_button = Button(text="Search", width=13, command=find_password)
 search_button.grid(row=1, column=2)
 generate_password_button = Button(text="Generate Password", command=generate_password)
