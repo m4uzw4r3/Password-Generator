@@ -1,1 +1,3 @@
-READ ME!
+Database will create itself as soon as the first password is saved.
+
+i know that GUI looks kinda disgusting, will fix it at some point....
